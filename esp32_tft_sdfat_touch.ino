@@ -131,7 +131,6 @@ void setup() {
 
 
 void loop() {
-  int x,y;
 
   // Sample drawing program
   drawIt();

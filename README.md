@@ -8,6 +8,13 @@ this code also includes a module to create a keyboard as well as all of the hook
 
 the Adafruit_ImageReader work so that you can display bitmaps on the TFT display.
 
+Parts required:
+--------------
+* 2.8" SPI TFT LCD Display Touch Panel 240X320
+* ESP-WROOM-32 ESP32 ESP-32S Development Board (nodeMcu)
+* My PCB  (optional)
+* SD card (optional)
+
  Libraries required:
  --------------------
  * Adafruit_GFX.h        // https://github.com/adafruit/Adafruit-GFX-Library
@@ -32,7 +39,7 @@ COMPILE:
  * calibrate touch  (in tftDisplay class)
  * show SD card info (in tftSD file)
  
- Execution:
+ Execution of Sample program:
  -----------
  Copy bitmap files to SD card root directory
  Open Serial window at 115200 baud

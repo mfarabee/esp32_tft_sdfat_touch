@@ -39,6 +39,7 @@
 #define TFT_MISO 19
 #define TOUCH_CS 4
 
+// Set the limits to the touch screen
 #define TouchDefaultLeftX   3900
 #define TouchDefaultRightX   320
 #define TouchDefaultTopY 3915

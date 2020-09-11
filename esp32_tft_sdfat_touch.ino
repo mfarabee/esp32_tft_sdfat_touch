@@ -23,20 +23,16 @@ SD_MISO     GPIO26      No Tristate driver on Display card for SPI interface
 SD_SCK      GPIO14
 */
 
+#include "esp32_tft_sdfat_touch.h"
 #include "tftDisplay.h"
 #include "tftSD.h"
 #include "keyboard.h"
 
-// Enable of SD card, enable=1, disable=0
-#define SD_ENABLE 1
-// Enable Adafruit Image Reader (displays BMP files from SD card enable=1, disable=0
-#define USE_IMAGEREADER 1
-
-// Image Reader will read 24bit BMP images from the SD card and display on the TFT
-// This requires SdFat library as well as editing the default SdFatConfig.h file
-// #define ENABLE_EXTENDED_TRANSFER_CLASS 1
-// #define USE_STANDARD_SPI_LIBRARY 2
-// #define FAT12_SUPPORT 1
+// IMAGE READER
+// The Adafruit image reader will only read 24bit color bitmaps
+// Load a picture into "Microsoft Paint"
+//    Resize it to 240x320 pixels (or close to it)
+//    Save-As -> 24-bit Bitmap
 
 // https://learn.adafruit.com/adafruit-gfx-graphics-library/loading-images
 // If not using Image Reader, don't include headers to save memory
@@ -128,7 +124,7 @@ void setup() {
   Serial.print("result= ");Serial.println(result);
 
 #if USE_IMAGEREADER >0
-  ImageReaderStat= reader->drawBMP("/us_24b.bmp",*Tft,0,0);
+  ImageReaderStat= reader->drawBMP("/sandDollar.bmp",*Tft,0,0);
 #endif
 }
 

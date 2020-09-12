@@ -1,22 +1,24 @@
 // For NodeMCU-32s and 240x320 TFT touch display with SD card
 /*
 Connections:
+Display and Touch are using VSPI bus
 DISPLAY    ESP32        NOTES
 T_IRQ       NC          Not using IRQ
-T_DO        NC
-T_DIN       GPIO23
-T_CS        GPIO4
-T_CLK       GPIO18
-SDO(MISO)   GPIO19
+T_DO        NC          Touch Data Out
+T_DIN       GPIO23      Touch Data In
+T_CS        GPIO4       Touch Chip Select
+T_CLK       GPIO18      Touch Clock
+SDO(MISO)   GPIO19      TFT_MISO
 LED         3.3V
-SCK         GPIO18
-SDI(MOSI)   GPIO23
-DC          GPIO08
-RESET       GPIO27
-CS          GPIO05
+SCK         GPIO18      TFT_SCLK
+SDI(MOSI)   GPIO23      TFT_MOSI
+DC          GPIO33      TFT_DC
+RESET       GPIO27      TFT_RST
+CS          GPIO05      TFT_CS
 GND         GND
 VCC         +5V (VIN)   The display has a voltage regulator requiring +5V input
 
+SD card is using HSPI buss
 SD_CS       GPIO15
 SD_MOSI     GPIO13
 SD_MISO     GPIO26      No Tristate driver on Display card for SPI interface
@@ -94,7 +96,7 @@ void setup() {
   
   Serial.begin(115200);
   
-  Tft= new TFT_CLASS(SD_ENABLE,SCREEN_ROTATION); // Set  SD card=off/on  and initial rotation
+  Tft= new TFT_CLASS(SD_ENABLE,SCREEN_ROTATION); // Set  SD card=off/on  and Initial Rotation
   // Tft->calibrate(); // un-comment to calibrate touch
 
   // Examples of SD usage, un-comment to list SD card files to terminal (Set SD_USAGE = 1)
@@ -115,20 +117,22 @@ void setup() {
 
   // Example of how to create keyboards
   Tft->fillScreen(ILI9341_BLACK);
+  // Create 2 keyboards. This should only happen once
   kbd = new KEYBOARD_CLASS(Tft,3,9,ILI9341_WHITE,ILI9341_BLUE,KbdLower,KbdUpper,KbdSymbol);
   kbd2 = new KEYBOARD_CLASS(Tft,3,4,ILI9341_WHITE,ILI9341_BLUE,KbdNum,KbdEmpty,KbdEmpty);
+  
+  // Once a keyboard is created, it can be activated at any time
   result = kbd->activateKeyboard("Filename?");
   Serial.print("result= ");Serial.println(result);
   SdReadFile(result);
-  result=kbd2->activateKeyboard("Enter Zip Code");
+  result=kbd2->activateKeyboard("Zip Code?");
   Serial.print("result= ");Serial.println(result);
 
 #if USE_IMAGEREADER >0
+  // This will display the sand dollar image as a background for drawing
   ImageReaderStat= reader->drawBMP("/sandDollar.bmp",*Tft,0,0);
 #endif
 }
-
-
 
 void loop() {
   drawIt();  // Sample drawing program

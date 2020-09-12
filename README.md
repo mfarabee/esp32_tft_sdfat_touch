@@ -46,7 +46,7 @@ COMPILE:
  
  Program will do the following:
  * Display Beach picture, wait 5 seconds
- * Display sample Alpha keyboard result will display in Serial window)
+ * Display sample Alpha keyboard (result will display in Serial window)
  * Display sample Numeric keyboard (result will display in Serial window)
  * Enter a sample touch drawing loop with sand Dollar BMP as background. (every release will change color)
 

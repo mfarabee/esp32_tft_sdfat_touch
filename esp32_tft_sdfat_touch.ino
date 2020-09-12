@@ -94,7 +94,7 @@ void setup() {
   
   Serial.begin(115200);
   
-  Tft= new TFT_CLASS(SD_ENABLE,1); // Set  SD card=off/on  and initial rotation to 1
+  Tft= new TFT_CLASS(SD_ENABLE,SCREEN_ROTATION); // Set  SD card=off/on  and initial rotation
   // Tft->calibrate(); // un-comment to calibrate touch
 
   // Examples of SD usage, un-comment to list SD card files to terminal (Set SD_USAGE = 1)
@@ -131,7 +131,5 @@ void setup() {
 
 
 void loop() {
-
-  // Sample drawing program
-  drawIt();
+  drawIt();  // Sample drawing program
 }

@@ -41,12 +41,12 @@ COMPILE:
  
  Execution of Sample program:
  -----------
- Copy bitmap files to SD card root directory
+ Copy bitmap and text files (bitmap directory) to SD card root directory
  Open Serial window at 115200 baud
  
  Program will do the following:
  * Display Beach picture, wait 5 seconds
- * Display sample Alpha keyboard (result will display in Serial window)
+ * Display sample Alpha keyboard, enter "test.txt" as the filename (result will display in Serial window)
  * Display sample Numeric keyboard (result will display in Serial window)
  * Enter a sample touch drawing loop with sand Dollar BMP as background. (every release will change color)
 
